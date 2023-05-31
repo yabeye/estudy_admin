@@ -57,7 +57,7 @@ class AuthenticationPage extends StatelessWidget {
                 children: [
                   CustomText(
                     text: "Welcome back to the E-Study admin panel",
-                    color: applightGrey,
+                    color: appLightGrey,
                   ),
                 ],
               ),

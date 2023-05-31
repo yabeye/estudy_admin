@@ -1,109 +1,139 @@
+import 'package:estudy_admin/constants/controllers.dart';
 import 'package:estudy_admin/constants/style.dart';
 import 'package:estudy_admin/pages/overview/widgets/bar_chart.dart';
 import 'package:estudy_admin/pages/overview/widgets/revenue_info.dart';
 import 'package:estudy_admin/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class RevenueSectionLarge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(24),
-      margin: EdgeInsets.symmetric(vertical: 30),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
-        boxShadow: [
-          BoxShadow(
-              offset: Offset(0, 6),
-              color: applightGrey.withOpacity(.1),
-              blurRadius: 12)
-        ],
-        border: Border.all(color: applightGrey, width: .5),
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                CustomText(
-                  text: "Questions Graph",
-                  size: 20,
-                  weight: FontWeight.bold,
-                  color: applightGrey,
-                ),
-                Container(
-                    width: 600,
-                    height: 200,
-                    child: SimpleBarChart.withSampleData()),
-              ],
-            ),
+    return Obx(() => Container(
+          padding: const EdgeInsets.all(24),
+          margin: const EdgeInsets.symmetric(vertical: 30),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(8),
+            boxShadow: [
+              BoxShadow(
+                  offset: const Offset(0, 6),
+                  color: appLightGrey.withOpacity(.1),
+                  blurRadius: 12)
+            ],
+            border: Border.all(color: appLightGrey, width: .5),
           ),
-          Container(
-            width: 1,
-            height: 120,
-            color: applightGrey,
-          ),
-          const Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Row(
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    RevenueInfo(
-                      title: "Biology",
-                      amount: "12",
+                    CustomText(
+                      text: "Questions Graph",
+                      size: 20,
+                      weight: FontWeight.bold,
+                      color: appLightGrey,
                     ),
-                    RevenueInfo(
-                      title: "Chemistry",
-                      amount: "10",
-                    ),
-                    RevenueInfo(
-                      title: "Physics",
-                      amount: "10",
+                    SizedBox(
+                      width: 600,
+                      height: 200,
+                      child: SimpleBarChart.withSampleData(),
                     ),
                   ],
                 ),
-                SizedBox(height: 30),
-                Row(
+              ),
+              Container(
+                width: 1,
+                height: 120,
+                color: appLightGrey,
+              ),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    RevenueInfo(
-                      title: "Geography",
-                      amount: "30",
+                    Row(
+                      children: [
+                        RevenueInfo(
+                          title: "Biology",
+                          amount: questionsController
+                              .filter("Biology")
+                              .length
+                              .toString(),
+                        ),
+                        RevenueInfo(
+                          title: "Chemistry",
+                          amount: questionsController
+                              .filter("Chemistry")
+                              .length
+                              .toString(),
+                        ),
+                        RevenueInfo(
+                          title: "Physics",
+                          amount: questionsController
+                              .filter("Physics")
+                              .length
+                              .toString(),
+                        ),
+                      ],
                     ),
-                    RevenueInfo(
-                      title: "History",
-                      amount: "11",
+                    const SizedBox(height: 30),
+                    Row(
+                      children: [
+                        RevenueInfo(
+                          title: "Geography",
+                          amount: questionsController
+                              .filter("Geography")
+                              .length
+                              .toString(),
+                        ),
+                        RevenueInfo(
+                          title: "History",
+                          amount: questionsController
+                              .filter("History")
+                              .length
+                              .toString(),
+                        ),
+                        RevenueInfo(
+                          title: "Civics",
+                          amount: questionsController
+                              .filter("Civics")
+                              .length
+                              .toString(),
+                        ),
+                      ],
                     ),
-                    RevenueInfo(
-                      title: "Civics",
-                      amount: "10",
+                    const SizedBox(height: 30),
+                    Row(
+                      children: [
+                        RevenueInfo(
+                          title: "Math",
+                          amount: questionsController
+                              .filter("Math")
+                              .length
+                              .toString(),
+                        ),
+                        RevenueInfo(
+                          title: "Languages",
+                          amount: questionsController
+                              .filter("Languages")
+                              .length
+                              .toString(),
+                        ),
+                        RevenueInfo(
+                          title: "Others",
+                          amount: questionsController
+                              .filter("Others")
+                              .length
+                              .toString(),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-                SizedBox(height: 30),
-                Row(
-                  children: [
-                    RevenueInfo(
-                      title: "Math",
-                      amount: "30",
-                    ),
-                    RevenueInfo(
-                      title: "Languages",
-                      amount: "0",
-                    ),
-                    RevenueInfo(
-                      title: "Others",
-                      amount: "1",
-                    ),
-                  ],
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
-    );
+        ));
   }
 }

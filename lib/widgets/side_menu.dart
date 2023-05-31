@@ -5,6 +5,7 @@ import 'package:estudy_admin/routing/routes.dart';
 import 'package:estudy_admin/widgets/custom_text.dart';
 import 'package:estudy_admin/widgets/side_menu_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class SideMenu extends StatelessWidget {
@@ -22,15 +23,18 @@ class SideMenu extends StatelessWidget {
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SizedBox(
-                  height: 40,
-                ),
+                const SizedBox(height: 40),
                 Row(
                   children: [
                     SizedBox(width: _width / 48),
                     Padding(
                       padding: const EdgeInsets.only(right: 12),
-                      child: Image.asset("assets/icons/logo.png"),
+                      child: SvgPicture.asset(
+                        "assets/icons/logo.svg",
+                        color: active,
+                        width: 30,
+                        height: 30,
+                      ),
                     ),
                     Flexible(
                       child: CustomText(
@@ -49,7 +53,7 @@ class SideMenu extends StatelessWidget {
               ],
             ),
           Divider(
-            color: applightGrey.withOpacity(.1),
+            color: appLightGrey.withOpacity(.1),
           ),
           Column(
             mainAxisSize: MainAxisSize.min,

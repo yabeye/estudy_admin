@@ -19,11 +19,12 @@ class UsersController extends GetxController {
     for (int i = 0; i < resUsers.length; i++) {
       users.add(User.fromJson(resUsers[i]));
     }
+    users.sort((a, b) => b.createdAt.compareTo(a.createdAt));
   }
 
   Future<void> updateUser({required String id, required bool isActive}) async {
     await _provider.patch("users/admin/$id", {
-      "isActive": false,
+      "isActive": isActive,
     });
     await getUsers();
   }

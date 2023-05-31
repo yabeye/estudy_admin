@@ -1,5 +1,6 @@
 /// Bar chart example
 import 'package:charts_flutter_new/flutter.dart' as charts;
+import 'package:estudy_admin/constants/controllers.dart';
 import 'package:estudy_admin/constants/style.dart';
 import 'package:flutter/material.dart';
 
@@ -11,10 +12,9 @@ class SimpleBarChart extends StatelessWidget {
 
   /// Creates a [BarChart] with sample data and no transition.
   factory SimpleBarChart.withSampleData() {
-    return new SimpleBarChart(
+    return SimpleBarChart(
       _createSampleData(),
-      // Disable animations for image tests.
-      animate: false,
+      animate: true,
     );
   }
 
@@ -29,14 +29,29 @@ class SimpleBarChart extends StatelessWidget {
   /// Create one series with sample hard coded data.
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {
     final data = [
-      OrdinalSales('Natural Science', 55),
-      OrdinalSales('Social Science', 42),
-      OrdinalSales('Others', 10),
+      OrdinalSales(
+        'Natural Science',
+        questionsController.questions
+            .where((p) => p.category.toLowerCase() == "natural")
+            .length,
+      ),
+      OrdinalSales(
+        'Social Science',
+        questionsController.questions
+            .where((p) => p.category.toLowerCase() == "social")
+            .length,
+      ),
+      OrdinalSales(
+        'Others',
+        questionsController.questions
+            .where((p) => p.category.toLowerCase() == "others")
+            .length,
+      ),
     ];
 
     return [
-      new charts.Series<OrdinalSales, String>(
-        id: 'Sales',
+      charts.Series<OrdinalSales, String>(
+        id: 'Category',
         colorFn: (_, __) => charts.ColorUtil.fromDartColor(active),
         domainFn: (OrdinalSales sales, _) => sales.year,
         measureFn: (OrdinalSales sales, _) => sales.sales,

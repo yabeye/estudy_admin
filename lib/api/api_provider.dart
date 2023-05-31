@@ -57,7 +57,6 @@ class ApiProvider {
         'Content-Type': 'application/json',
         'authorization': "Bearer $token",
       });
-      print("Patch: ${response.body}");
       responseJson = _response(response);
     } on FetchDataException {
       throw FetchDataException('No Internet connection');
@@ -82,12 +81,12 @@ class ApiProvider {
 
   dynamic _response(http.Response response) {
     var responseJson = json.decode(response.body.toString());
-    debugPrint("$responseJson");
+    // debugPrint("$responseJson");
     switch (response.statusCode) {
       case 200:
       case 201:
         var responseJson = json.decode(response.body.toString());
-        debugPrint("$responseJson");
+        // debugPrint("$responseJson");
         return responseJson;
       case 400:
         var responseJson = json.decode(response.body.toString());

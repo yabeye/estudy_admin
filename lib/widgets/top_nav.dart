@@ -1,5 +1,6 @@
 import 'package:estudy_admin/constants/style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../helpers/reponsiveness.dart';
 import 'custom_text.dart';
@@ -11,9 +12,11 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 16),
-                  child: Image.asset(
-                    "assets/icons/logo.png",
-                    width: 28,
+                  child: SvgPicture.asset(
+                    "assets/icons/logo.svg",
+                    color: active,
+                    width: 40,
+                    height: 40,
                   ),
                 ),
               ],
@@ -30,7 +33,7 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                 visible: !ResponsiveWidget.isSmallScreen(context),
                 child: CustomText(
                   text: "E Study",
-                  color: applightGrey,
+                  color: appLightGrey,
                   size: 20,
                   weight: FontWeight.bold,
                 )),
@@ -67,14 +70,14 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
             Container(
               width: 1,
               height: 22,
-              color: applightGrey,
+              color: appLightGrey,
             ),
             SizedBox(
               width: 24,
             ),
             CustomText(
               text: "Admin",
-              color: applightGrey,
+              color: appLightGrey,
             ),
             SizedBox(
               width: 16,

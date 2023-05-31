@@ -30,7 +30,7 @@ class InfoCard extends StatelessWidget {
             boxShadow: [
               BoxShadow(
                   offset: Offset(0, 6),
-                  color: applightGrey.withOpacity(.1),
+                  color: appLightGrey.withOpacity(.1),
                   blurRadius: 12)
             ],
             borderRadius: BorderRadius.circular(8),
@@ -54,7 +54,7 @@ class InfoCard extends StatelessWidget {
                         text: "$title\n",
                         style: TextStyle(
                             fontSize: 16,
-                            color: isActive ? active : applightGrey)),
+                            color: isActive ? active : appLightGrey)),
                     TextSpan(
                         text: "$value",
                         style: TextStyle(

@@ -24,7 +24,7 @@ class HorizontalMenuItem extends StatelessWidget {
         },
         child: Obx(() => Container(
               color: menuController.isHovering(itemName ?? "item name")
-                  ? applightGrey.withOpacity(.1)
+                  ? appLightGrey.withOpacity(.1)
                   : Colors.transparent,
               child: Row(
                 children: [
@@ -51,7 +51,7 @@ class HorizontalMenuItem extends StatelessWidget {
                       text: itemName,
                       color: menuController.isHovering(itemName ?? "")
                           ? dark
-                          : applightGrey,
+                          : appLightGrey,
                     ))
                   else
                     Flexible(

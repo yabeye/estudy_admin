@@ -54,7 +54,7 @@ class _UsersPageState extends State<UsersPage> {
                         boxShadow: [
                           BoxShadow(
                               offset: Offset(0, 6),
-                              color: applightGrey.withOpacity(.1),
+                              color: appLightGrey.withOpacity(.1),
                               blurRadius: 12)
                         ],
                         borderRadius: BorderRadius.circular(8),
@@ -98,13 +98,13 @@ class _UsersPageState extends State<UsersPage> {
                                   fontWeight: FontWeight.bold,
                                 )),
                           ),
-                          DataColumn(
-                            label: Text('Files upload',
-                                style: TextStyle(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold,
-                                )),
-                          ),
+                          // DataColumn(
+                          //   label: Text('Files upload',
+                          //       style: TextStyle(
+                          //         fontSize: 22,
+                          //         fontWeight: FontWeight.bold,
+                          //       )),
+                          // ),
                           DataColumn(
                             label: Text('',
                                 style: TextStyle(
@@ -131,7 +131,7 @@ class _UsersPageState extends State<UsersPage> {
                             DataCell(Text(user.email ?? "")),
                             DataCell(Text(user.roles ?? "User")),
                             DataCell(Text(user.question.length.toString())),
-                            DataCell(Text("0")),
+                            // DataCell(Text("0")),
                             // DataCell(
                             //   TextButton(
                             //       onPressed: () {},
@@ -146,8 +146,9 @@ class _UsersPageState extends State<UsersPage> {
                               TextButton(
                                 onPressed: () async {
                                   await usersController.updateUser(
-                                      id: user.id ?? "",
-                                      isActive: false ?? !user.isActive);
+                                    id: user.id ?? "",
+                                    isActive: !user.isActive,
+                                  );
                                 },
                                 style: ButtonStyle(
                                   backgroundColor:

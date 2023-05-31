@@ -21,25 +21,6 @@ class _QuestionsPageState extends State<QuestionsPage> {
   @override
   void initState() {
     super.initState();
-    afterBuildCreated(() async {
-      _isLoading = true;
-      setState(() {});
-
-      try {
-        await questionsController.getAllQuestions();
-      } on BadRequestException catch (e) {
-        toasty(context, e.message);
-      } on UnAuthorizedException catch (e) {
-        toasty(context, e.message);
-      } on FetchDataException catch (e) {
-        toasty(context, e.message);
-      } catch (e) {
-        toasty(context, "We are unable to do that!");
-      }
-
-      _isLoading = false;
-      setState(() {});
-    });
   }
 
   @override

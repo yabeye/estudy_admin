@@ -15,11 +15,11 @@ class RevenueInfo extends StatelessWidget {
           text: TextSpan(children: [
             TextSpan(
                 text: "$title \n\n",
-                style: TextStyle(color: applightGrey, fontSize: 16)),
+                style: TextStyle(color: appLightGrey, fontSize: 16)),
             TextSpan(
                 text: "$amount",
                 style: TextStyle(
-                    color: applightGrey,
+                    color: appLightGrey,
                     fontSize: 24,
                     fontWeight: FontWeight.bold)),
           ])),

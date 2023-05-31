@@ -19,7 +19,7 @@ class Question {
   final String subject;
   final bool isOpen;
   final DateTime createdAt;
-  final User askedBy;
+  final String? askedBy;
   final List<dynamic> voteCount;
   final List<dynamic> voteCountDown;
   final List<Answer> answers;
@@ -35,7 +35,7 @@ class Question {
     required this.subject,
     required this.isOpen,
     required this.createdAt,
-    required this.askedBy,
+    this.askedBy,
     required this.voteCount,
     required this.voteCountDown,
     required this.answers,
@@ -52,7 +52,7 @@ class Question {
     String? subject,
     bool? isOpen,
     DateTime? createdAt,
-    User? askedBy,
+    String? askedBy,
     List<dynamic>? voteCount,
     List<dynamic>? voteCountDown,
     List<Answer>? answers,
@@ -83,7 +83,7 @@ class Question {
         subject: json["subject"],
         isOpen: json["isOpen"],
         createdAt: DateTime.parse(json["createdAt"]),
-        askedBy: User.fromJson(json["askedBy"]),
+        // askedBy: json["askedBy"],
         voteCount: List<dynamic>.from(json["voteCount"].map((x) => x)),
         voteCountDown: List<dynamic>.from(json["voteCountDown"].map((x) => x)),
         answers:
@@ -100,7 +100,7 @@ class Question {
         "subject": subject,
         "isOpen": isOpen,
         "createdAt": createdAt.toIso8601String(),
-        "askedBy": askedBy.toJson(),
+        "askedBy": askedBy,
         "voteCount": List<dynamic>.from(voteCount.map((x) => x)),
         "voteCountDown": List<dynamic>.from(voteCountDown.map((x) => x)),
         "answers": List<dynamic>.from(answers.map((x) => x)),

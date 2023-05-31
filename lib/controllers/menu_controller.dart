@@ -43,7 +43,7 @@ class AppMenuController extends GetxController {
 
     return Icon(
       icon,
-      color: isHovering(itemName) ? dark : applightGrey,
+      color: isHovering(itemName) ? dark : appLightGrey,
     );
   }
 }
