@@ -2,6 +2,7 @@ import 'package:estudy_admin/constants/controllers.dart';
 import 'package:estudy_admin/constants/style.dart';
 import 'package:estudy_admin/pages/questions/widgets/question_detail.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:text_scroll/text_scroll.dart';
@@ -19,8 +20,11 @@ class QuestionsPage extends StatefulWidget {
 
 class _QuestionsPageState extends State<QuestionsPage> {
   bool _isLoading = false;
+  final TextEditingController _searchController = TextEditingController();
+
   @override
   void initState() {
+    _searchController.text = questionsController.searchKeyWord.value;
     super.initState();
   }
 
@@ -47,6 +51,45 @@ class _QuestionsPageState extends State<QuestionsPage> {
               ],
             ),
           ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: SizedBox(
+              width: size.width * .2,
+              child: TextField(
+                controller: _searchController,
+                decoration: const InputDecoration(
+                  hintText: "Search questions ...",
+                ),
+                onChanged: (c) {
+                  questionsController.searchKeyWord.value = c;
+                },
+              ),
+            ),
+          ),
+          Obx(() => Align(
+                alignment: Alignment.centerLeft,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: primaryColor,
+                    borderRadius: radius(),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(
+                        FontAwesomeIcons.searchengin,
+                        color: Colors.white,
+                      ),
+                      Text(
+                        "Search Applied",
+                        style: primaryTextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ).paddingAll(8),
+                ),
+              ).visible(questionsController.searchKeyWord.isNotEmpty)),
           Expanded(
               child: Obx(() => ListView(
                     children: [
@@ -140,8 +183,21 @@ class _QuestionsPageState extends State<QuestionsPage> {
                             // ),
                           ],
                           rows: List.generate(
-                              questionsController.questions.length, (i) {
-                            final questions = questionsController.questions;
+                              (questionsController.questions.where(
+                                (p0) =>
+                                    (p0.title).toLowerCase().contains(
+                                        questionsController.searchKeyWord) ||
+                                    (p0.description).toLowerCase().contains(
+                                        questionsController.searchKeyWord),
+                              )).length, (i) {
+                            final questions =
+                                (questionsController.questions.where(
+                              (p0) =>
+                                  (p0.title).toLowerCase().contains(
+                                      questionsController.searchKeyWord) ||
+                                  (p0.description).toLowerCase().contains(
+                                      questionsController.searchKeyWord),
+                            )).toList();
                             // Add somethig
                             return DataRow(
                                 onLongPress: () async {

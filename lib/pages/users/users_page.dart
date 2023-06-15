@@ -2,6 +2,7 @@ import 'package:estudy_admin/constants/controllers.dart';
 import 'package:estudy_admin/constants/style.dart';
 import 'package:estudy_admin/pages/users/widgets/user_detail.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
 
@@ -16,16 +17,20 @@ class UsersPage extends StatefulWidget {
 }
 
 class _UsersPageState extends State<UsersPage> {
+  final TextEditingController _searchController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
     afterBuildCreated(() async {
+      _searchController.text = usersController.searchKeyWord.value;
       await usersController.getUsers();
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Container(
       child: Column(
         children: [
@@ -44,6 +49,45 @@ class _UsersPageState extends State<UsersPage> {
               ],
             ),
           ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: SizedBox(
+              width: size.width * .2,
+              child: TextField(
+                controller: _searchController,
+                decoration: const InputDecoration(
+                  hintText: "Search uses ...",
+                ),
+                onChanged: (c) {
+                  usersController.searchKeyWord.value = c;
+                },
+              ),
+            ),
+          ),
+          Obx(() => Align(
+                alignment: Alignment.centerLeft,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: primaryColor,
+                    borderRadius: radius(),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(
+                        FontAwesomeIcons.searchengin,
+                        color: Colors.white,
+                      ),
+                      Text(
+                        "Search Applied",
+                        style: primaryTextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ).paddingAll(8),
+                ),
+              ).visible(usersController.searchKeyWord.isNotEmpty)),
           Expanded(
             child: Obx(() => ListView(
                   children: [
@@ -130,9 +174,24 @@ class _UsersPageState extends State<UsersPage> {
                           //       )),
                           // ),
                         ],
-                        rows: List.generate(usersController.users.length,
-                            (index) {
-                          final user = usersController.users[index];
+                        rows: List.generate(
+                            (usersController.users.where(
+                              (p0) =>
+                                  (p0.firstName ?? "").toLowerCase().contains(
+                                      usersController.searchKeyWord) ||
+                                  (p0.lastName ?? "").toLowerCase().contains(
+                                        usersController.searchKeyWord,
+                                      ),
+                            )).length, (index) {
+                          final user = [
+                            ...usersController.users.where((p0) =>
+                                (p0.firstName ?? "")
+                                    .toLowerCase()
+                                    .contains(usersController.searchKeyWord) ||
+                                (p0.lastName ?? "").toLowerCase().contains(
+                                      usersController.searchKeyWord,
+                                    ))
+                          ][index];
                           return DataRow(
                               onLongPress: () {
                                 UserDetail(user: user).launch(

@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 class UsersController extends GetxController {
   static UsersController instance = Get.find();
   var users = <User>[].obs;
+  var searchKeyWord = "".obs;
+
   final _provider = ApiProvider();
 
   // For auth

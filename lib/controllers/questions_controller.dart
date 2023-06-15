@@ -11,6 +11,8 @@ class QuestionsController extends GetxController {
   var answers = <Answer>[].obs;
   var files = [].obs;
 
+  var searchKeyWord = "".obs;
+
   final _provider = ApiProvider();
 
   Future<void> getAllQuestions() async {
