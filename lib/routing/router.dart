@@ -1,5 +1,5 @@
 import 'package:estudy_admin/pages/clients/questions_page.dart';
-import 'package:estudy_admin/pages/drivers/users_page.dart';
+import 'package:estudy_admin/pages/users/users_page.dart';
 import 'package:estudy_admin/pages/overview/overview.dart';
 import 'package:flutter/material.dart';
 import 'package:estudy_admin/routing/routes.dart';

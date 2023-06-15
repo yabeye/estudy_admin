@@ -22,6 +22,7 @@ class User {
   String? profilePic;
   bool isActive;
   DateTime createdAt;
+  List<String>? awards;
 
   User({
     this.id,
@@ -37,6 +38,7 @@ class User {
     this.profilePic,
     this.isActive = true,
     required this.createdAt,
+    this.awards = const [],
   });
 
   User copyWith({
@@ -53,6 +55,7 @@ class User {
     String? profilePic,
     bool? isActive,
     DateTime? createdAt,
+    List<String>? awards,
   }) =>
       User(
         id: id ?? this.id,
@@ -68,6 +71,7 @@ class User {
         profilePic: profilePic ?? this.profilePic,
         isActive: isActive ?? this.isActive,
         createdAt: createdAt ?? this.createdAt,
+        awards: awards ?? this.awards,
       );
 
   factory User.fromJson(Map<String, dynamic> json) => User(
@@ -84,6 +88,7 @@ class User {
         profilePic: json["profilePic"],
         isActive: json["isActive"] ?? true,
         createdAt: DateTime.parse(json["createdAt"]),
+        awards: List<String>.from(json["awards"].map((x) => x)),
       );
 
   Map<String, dynamic> toJson() => {

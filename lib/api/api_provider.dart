@@ -9,7 +9,7 @@ String token =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NzZmZmVlZWQ2ZGU5ODZlOWY3M2VlOCIsImlhdCI6MTY4NTUyMDM4OCwiZXhwIjoxNzAzNTIwMzg4fQ.X96BphguY4yfqw63ZFb2ZKy4GIY8eIZSSAR8mVXSsIE";
 
 class ApiProvider {
-  static String publicUrl = "http://192.168.8.100:5100/";
+  static String publicUrl = "http://192.168.89.14:5100/";
   static String baseUrl = "${publicUrl}api/";
 
   Future<dynamic> get(String url) async {

@@ -22,10 +22,20 @@ class UsersController extends GetxController {
     users.sort((a, b) => b.createdAt.compareTo(a.createdAt));
   }
 
-  Future<void> updateUser({required String id, required bool isActive}) async {
+  Future<void> updateUser({
+    required String id,
+    required bool isActive,
+    List<String>? awards,
+  }) async {
     await _provider.patch("users/admin/$id", {
       "isActive": isActive,
+      "awards": awards,
     });
+    await getUsers();
+  }
+
+  Future<void> deleteUser({required String id}) async {
+    await _provider.delete("users/$id");
     await getUsers();
   }
 

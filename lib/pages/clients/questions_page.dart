@@ -165,11 +165,12 @@ class _QuestionsPageState extends State<QuestionsPage> {
                                   DataCell(
                                     SizedBox(
                                       width: size.width * .05,
-                                      child: questions[i].reportedBy.isEmpty
+                                      child: (questions[i].reportedBy).isEmpty
                                           ? const Text("no reports")
                                           : TextScroll(
-                                              (questions[i].reportedBy)
-                                                  .map((e) => e["report"])
+                                              ((questions[i].reportedBy))
+                                                  .map((e) =>
+                                                      (e["report"] ?? ""))
                                                   .join(", "),
                                               velocity: const Velocity(
                                                   pixelsPerSecond:
