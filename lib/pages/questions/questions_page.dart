@@ -1,5 +1,6 @@
 import 'package:estudy_admin/constants/controllers.dart';
 import 'package:estudy_admin/constants/style.dart';
+import 'package:estudy_admin/pages/questions/widgets/question_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -143,6 +144,16 @@ class _QuestionsPageState extends State<QuestionsPage> {
                             final questions = questionsController.questions;
                             // Add somethig
                             return DataRow(
+                                onLongPress: () async {
+                                  // await usersController.updateUser(
+                                  //   id: user.id ?? "",
+                                  //   isActive: !user.isActive,
+                                  // );
+                                  QuestionDetail(question: questions[i]).launch(
+                                    context,
+                                    isNewTask: false,
+                                  );
+                                },
                                 color: MaterialStateColor.resolveWith((states) {
                                   if (states.contains(MaterialState.selected) ||
                                       (questions[i].reportedBy ?? [])
