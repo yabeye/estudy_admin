@@ -1,12 +1,10 @@
 import 'dart:convert';
 
+import 'package:estudy_admin/constants/controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import 'exceptions.dart';
-
-String token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NzZmZmVlZWQ2ZGU5ODZlOWY3M2VlOCIsImlhdCI6MTY4NTUyMDM4OCwiZXhwIjoxNzAzNTIwMzg4fQ.X96BphguY4yfqw63ZFb2ZKy4GIY8eIZSSAR8mVXSsIE";
 
 class ApiProvider {
   static String publicUrl = "http://192.168.89.14:5100/";
@@ -15,6 +13,7 @@ class ApiProvider {
   Future<dynamic> get(String url) async {
     var responseJson;
     try {
+      String token = usersController.tokenStored.value;
       final completeUri = Uri.parse(baseUrl + url);
       final response = await http.get(completeUri, headers: {
         'Content-Type': 'application/json',
@@ -34,6 +33,7 @@ class ApiProvider {
   ) async {
     var responseJson;
     try {
+      String token = usersController.tokenStored.value;
       final completeUri = Uri.parse(baseUrl + url);
       final response =
           await http.post(completeUri, body: jsonEncode(body), headers: {
@@ -50,6 +50,7 @@ class ApiProvider {
   Future<dynamic> patch(String url, Object? body) async {
     var responseJson;
     try {
+      String token = usersController.tokenStored.value;
       final completeUri = Uri.parse(baseUrl + url);
 
       final response =
@@ -67,6 +68,7 @@ class ApiProvider {
   Future<dynamic> delete(String url) async {
     var responseJson;
     try {
+      String token = usersController.tokenStored.value;
       final completeUri = Uri.parse(baseUrl + url);
       final response = await http.delete(completeUri, headers: {
         'Content-Type': 'application/json',

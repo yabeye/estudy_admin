@@ -67,10 +67,11 @@ class AuthenticationPage extends StatelessWidget {
               TextField(
                 controller: usersController.emailController,
                 decoration: InputDecoration(
-                    labelText: "Email",
-                    hintText: "admin@estudy.com",
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20))),
+                  labelText: "Email",
+                  hintText: "admin@estudy.com",
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                ),
               ),
               SizedBox(height: 15),
               TextField(
@@ -85,33 +86,34 @@ class AuthenticationPage extends StatelessWidget {
               SizedBox(
                 height: 15,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Checkbox(value: true, onChanged: (value) {}),
-                      CustomText(
-                        text: "Remeber Me",
-                      ),
-                    ],
-                  ),
-                  // CustomText(text: "Forgot password?", color: active)
-                  CustomText(text: "", color: active)
-                ],
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     Row(
+              //       children: [
+              //         Checkbox(value: true, onChanged: (value) {}),
+              //         CustomText(
+              //           text: "Remeber Me",
+              //         ),
+              //       ],
+              //     ),
+              //     // CustomText(text: "Forgot password?", color: active)
+              //     CustomText(text: "", color: active)
+              //   ],
+              // ),
               SizedBox(height: 15),
               InkWell(
                 onTap: () async {
-                  if (true ||
-                      usersController.emailController.text ==
-                              "admin@estudy.com" &&
-                          usersController.passwordController.text == "123456") {
+                  if (await usersController.login()) {
                     Get.offAllNamed(rootRoute);
                     return;
                   }
-                  toasty(context, "Wrong credentials",
-                      bgColor: danger, textColor: white);
+                  toasty(
+                    context,
+                    "Wrong credentials",
+                    bgColor: danger,
+                    textColor: white,
+                  );
                   return;
                 },
                 child: Container(
@@ -119,8 +121,8 @@ class AuthenticationPage extends StatelessWidget {
                       color: active, borderRadius: BorderRadius.circular(20)),
                   alignment: Alignment.center,
                   width: double.maxFinite,
-                  padding: EdgeInsets.symmetric(vertical: 16),
-                  child: CustomText(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: const CustomText(
                     text: "Login",
                     color: Colors.white,
                   ),

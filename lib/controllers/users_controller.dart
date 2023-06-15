@@ -14,6 +14,21 @@ class UsersController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
+  var tokenStored = "".obs;
+
+  Future<bool> login() async {
+    try {
+      final response = await _provider.post("auth/login", {
+        "email": emailController.value.text,
+        "password": passwordController.value.text,
+      });
+      tokenStored.value = response['data']['accessToken'];
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   Future<void> getUsers() async {
     var response = await _provider.get("users");
     var resUsers = response['data']['users'];
