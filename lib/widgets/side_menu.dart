@@ -7,6 +7,9 @@ import 'package:estudy_admin/widgets/side_menu_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:nb_utils/nb_utils.dart';
+
+import '../pages/authentication/authentication.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu({Key? key}) : super(key: key);
@@ -68,7 +71,7 @@ class SideMenu extends StatelessWidget {
                       }
                       if (!menuController.isActive(item.name)) {
                         menuController.changeActiveItemTo(item.name);
-                        if (ResponsiveWidget.isSmallScreen(context)) Get.back();
+                        // if (ResponsiveWidget.isSmallScreen(context)) Get.back();
                         navigationController.navigateTo(item.route);
                       }
                     }))

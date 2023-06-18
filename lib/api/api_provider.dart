@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'exceptions.dart';
 
 class ApiProvider {
-  static String publicUrl = "http://192.168.89.14:5100/";
+  static String publicUrl = "https://e-study-api.vercel.app/";
   static String baseUrl = "${publicUrl}api/";
 
   Future<dynamic> get(String url) async {

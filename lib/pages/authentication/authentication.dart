@@ -50,7 +50,7 @@ class AuthenticationPage extends StatelessWidget {
                           fontSize: 22, fontWeight: FontWeight.bold)),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Row(
@@ -114,7 +114,6 @@ class AuthenticationPage extends StatelessWidget {
                     bgColor: danger,
                     textColor: white,
                   );
-                  return;
                 },
                 child: Container(
                   decoration: BoxDecoration(
